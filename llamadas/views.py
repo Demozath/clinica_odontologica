@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect
 from .forms import LlamadaForm
 from django.contrib.auth.decorators import login_required
 from .models import Llamada
+from django.db.models import Count
 
 def login_view(request):
     if request.method == 'POST':
@@ -33,3 +34,6 @@ def registro_llamadas_view(request):
     llamadas = Llamada.objects.filter(asistente=request.user).order_by('-hora')
     return render(request, 'llamadas/registro_llamadas.html', {'form': form, 'llamadas': llamadas})
 
+def total_llamadas_por_tipo():
+    totales = Llamada.objects.values('resultado').annotate(total=Count('resultado')).order_by('-total')
+    return totales
