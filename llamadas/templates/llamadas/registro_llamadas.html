@@ -1,25 +1,45 @@
-{% block content %}
-  <h2>Registro de Llamadas</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Registrar Llamada</button>
-    <button type="button">Atrás</button>
-  </form>
-  <h3>Llamadas Registradas</h3>
-  <table>
-    <tr>
-      <th>Nombre del Asistente</th>
-      <th>Hora de la Llamada</th>
-      <th>Resultado Llamada</th>
-    </tr>
-    {% for llamada in llamadas %}
-      <tr>
-        <td>{{ llamada.asistente }}</td>
-        <td>{{ llamada.hora }}</td>
-        <td>{{ llamada.get_resultado_display }}</td>
-        <td>{{ llamada.comentarios}}</td>
-      </tr>
-    {% endfor %}
-  </table>
-{% endblock %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Llamadas - Clínica Odontológica</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h2>Registro de Llamadas</h2>
+        </header>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="button">Registrar Llamada</button>
+        </form>
+        <div class="fade-in">
+            <h3>Llamadas Registradas</h3>
+            <div class="table-container">
+                <table>
+                    <tr>
+                        <th>Nombre del Asistente</th>
+                        <th>Hora de la Llamada</th>
+                        <th>Resultado Llamada</th>
+                        <th>Comentarios</th>
+                    </tr>
+                    {% for llamada in llamadas %}
+                        <tr>
+                            <td>{{ llamada.asistente }}</td>
+                            <td>{{ llamada.hora }}</td>
+                            <td>{{ llamada.get_resultado_display }}</td>
+                            <td>{{ llamada.comentarios }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

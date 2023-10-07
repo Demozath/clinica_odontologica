@@ -6,6 +6,7 @@ from .forms import LlamadaForm
 from django.contrib.auth.decorators import login_required
 from .models import Llamada
 from django.db.models import Count
+from django.utils import timezone
 
 def login_view(request):
     if request.method == 'POST':
@@ -37,3 +38,23 @@ def registro_llamadas_view(request):
 def total_llamadas_por_tipo():
     totales = Llamada.objects.values('resultado').annotate(total=Count('resultado')).order_by('-total')
     return totales
+
+@login_required
+def registro_llamadas_view2(request):
+    if request.method == 'POST':
+        form = LlamadaForm(request.POST)
+        if form.is_valid():
+            llamada = form.save(commit=False)
+            llamada.asistente = request.user
+            llamada.save()
+            return redirect('registro_llamadas')
+    else:
+        form = LlamadaForm()
+
+    # Obtener la fecha actual
+    hoy = timezone.now().date()
+
+    # Filtrar las llamadas del usuario logueado y del día actual, ordenadas por hora
+    llamadas = Llamada.objects.filter(asistente=request.user, hora__date=hoy).order_by('-hora')
+
+    return render(request, 'llamadas/registro_llamadas.html', {'form': form, 'llamadas': llamadas})
