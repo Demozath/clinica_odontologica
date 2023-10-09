@@ -1,0 +1,23 @@
+
+{% block content %}
+<h2>Resumen de Llamadas por Asistente</h2>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Asistente</th>
+            <th>Tipo de Llamada</th>
+            <th>Total de Llamadas</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for total in totales %}
+        <tr>
+            <td>{{ total.asistente__username }}</td> {# asumimos que el username del usuario es el nombre de la asistente #}
+            <td>{{ total.resultado }}</td> {# mostraría el código corto del resultado, puedes usar el diccionario para obtener la descripción si lo prefieres #}
+            <td>{{ total.total }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -12,3 +12,9 @@ class Llamada(models.Model):
     hora = models.DateTimeField(auto_now_add=True)
     resultado = models.CharField(max_length=5, choices=OPCIONES_RESULTADO)
     comentarios = models.TextField(blank=True)
+    
+    RESULTADO_NOMBRES = dict(OPCIONES_RESULTADO)
+    
+    
+
+

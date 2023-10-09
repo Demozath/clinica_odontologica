@@ -1,0 +1,28 @@
+
+{% load static%}
+{% block content %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'style_totales_llamadas.css' %}">
+</head>
+<div class="container">
+    <h2>Total de Llamadas por Asistente</h2>
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>Asistente</th>
+                <th>Tipo de Llamada</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for total in totales %}
+            <tr>
+                <td>{{ total.asistente }}</td>
+                <td>{{ total.nombre }}</td>
+                <td>{{ total.total }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
