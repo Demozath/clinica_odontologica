@@ -37,8 +37,19 @@ def registro_llamadas_view(request):
             return redirect('registro_llamadas')
     else:
         form = LlamadaForm()
+    
     llamadas = Llamada.objects.filter(asistente=request.user).order_by('-hora')
-    return render(request, 'llamadas/registro_llamadas.html', {'form': form, 'llamadas': llamadas})
+    
+    # Determina si el usuario es un supervisor.
+    es_supervisor = is_supervisor(request.user)
+
+    context = {
+        'form': form, 
+        'llamadas': llamadas,
+        'es_supervisor': es_supervisor   # añade la variable es_supervisor al contexto
+    }
+    return render(request, 'llamadas/registro_llamadas.html', context)
+
 
 
 def is_supervisor(user):

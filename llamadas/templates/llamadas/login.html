@@ -1,5 +1,13 @@
 {% block content %}
-  <h2>Accede a tu cuenta</h2>
+{% load static %}
+<div>
+  <head>
+    <link rel="stylesheet" type="text/css" href="{% static 'style_login.css' %}">
+  </head>
+  <body>
+  <h1>Accede a tu cuenta</h1>
+  <p>Bienvenida/o al sistema de ingreso de llamadas</p>
+  
   <form method="post">
     {% csrf_token %}
     <label for="username">Nombre de usuario:</label>
@@ -14,5 +22,7 @@
         <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
       {% endfor %}
     </ul>
+  </div>
+</body>
   {% endif %}
 {% endblock %}

@@ -68,7 +68,7 @@ color: #333;
 }
 
 /* Botones */
-.button {
+.button, .a {
 display: inline-block;
 color: #ffffff;
 background: #50b3a2;
