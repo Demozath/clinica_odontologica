@@ -21,8 +21,10 @@
                 <td>{{ total.nombre }}</td>
                 <td>{{ total.total }}</td>
             </tr>
+
             {% endfor %}
         </tbody>
     </table>
 </div>
+<a href="{% url 'registro_llamadas' %}" class="button">Registro llamadas</a>
 {% endblock %}

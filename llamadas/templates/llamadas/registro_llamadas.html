@@ -17,8 +17,6 @@
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit" class="button">Registrar Llamada</button>
-
-            <!-- Este botón solo aparecerá cuando el usuario tenga el ROL de "SUPERVISOR"-->
             {% if es_supervisor %}
                 <a href="{% url 'totales_llamadas' %}" class="button">Ver Totales</a>
             {% endif %}
