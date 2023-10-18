@@ -9,7 +9,7 @@
     margin: 25px 0;
     font-size: 0.9em;
     width: 100%;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 20px rgba(133, 230, 69, 0.15);
 }
 
 .styled-table thead tr {
@@ -35,7 +35,7 @@
 }
 
 .styled-table tbody tr:hover {
-    background-color: #1f0909;
+    background-color: #e6b47c;
 }
 
 .button {
